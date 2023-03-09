@@ -52,7 +52,13 @@ exports.handler = async (event) => {
         var resizingOptions = {};
         if (operationsJSON['width']) resizingOptions.width = parseInt(operationsJSON['width']);
         if (operationsJSON['height']) resizingOptions.height = parseInt(operationsJSON['height']);
-	if (operationsJSON['height'] || operationsJSON['width']) resizingOptions.fit = 'contain';
+	if (operationsJSON['fit']) {
+		resizingOptions.fit = operationsJSON['fit'];
+
+		if (operationsJSON['fit'] === 'contain') {
+		    resizingOptions.background = { r: 255, g: 255, b: 255, alpha: 0 }
+		}
+	}
 
         if (resizingOptions) transformedImage = sharpObject.resize(resizingOptions);
         // check if formatting is requested
