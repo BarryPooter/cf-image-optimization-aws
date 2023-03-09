@@ -52,7 +52,7 @@ exports.handler = async (event) => {
         var resizingOptions = {};
         if (operationsJSON['width']) resizingOptions.width = parseInt(operationsJSON['width']);
         if (operationsJSON['height']) resizingOptions.height = parseInt(operationsJSON['height']);
-        if (operationsJSON['height'] || operationsJSON['width') {
+        if (operationsJSON['height'] || operationsJSON['width']) {
 		resizingOptions.fit = 'contain';
 		resizingOptions.background = { r: 255, g: 255, b: 255, alpha: 0 }
 	}
