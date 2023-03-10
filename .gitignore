@@ -1,1 +1,9 @@
 node_modules/*
+bin/image-optimization.d.ts
+bin/image-optimization.js
+cdk.out/*
+lib/image-optimization-stack.d.ts
+lib/image-optimization-stack.js
+lib/my-custom-resource.d.ts
+lib/my-custom-resource.js
+package-lock.json
