@@ -57,15 +57,20 @@ exports.handler = async (event) => {
     try {
         // check if resizing is requested
         var resizingOptions = {};
+        let _passedWidth = false;
+        let _passedHeight = false;
+
         if (operationsJSON['width'] && allowedDimensions.includes(parseInt(operationsJSON['width']))) {
             resizingOptions.width = parseInt(operationsJSON['width']);
+            _passedWidth = true;
         }
         
         if (operationsJSON['height'] && allowedDimensions.includes(parseInt(operationsJSON['height']))) {
             resizingOptions.height = parseInt(operationsJSON['height']);
+            _passedHeight = true;
         } 
         
-        if (operationsJSON['height'] || operationsJSON['width']) {
+        if (_passedWidth || _passedHeight) {
             resizingOptions.fit = 'contain';
             resizingOptions.background = { r: 255, g: 255, b: 255, alpha: 1
         }
