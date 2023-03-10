@@ -1,3 +1,17 @@
+## Alterations
+
+To make sure the resizer works as I hoped it would, I made some changes to the function which uses the Sharp library.
+
+There are now restricted dimensions for the height and width:
+- 80
+- 200
+- 250
+- 500
+- 1000
+
+When any change is detected to height or width, the `fit: 'contain'` manipulation is also added, including a white background/canvas.
+
+
 ## Image Optimization
 
 Images are usually the heaviest components of a web page, both in terms of bytes and number of HTTP requests. Optimizing images on your website is critical to improve your users’ experience, reduce delivery costs and enhance your position in search engine ranking. For example, Google’s Largest Contentful Paint metric in their search ranking algorithm is highly impacted by how much you optimize the images on your website. In the solution, we provide you with a simple and performant solution for image optimization using serverless components such as Amazon CloudFront, Amazon S3 and AWS Lambda.
