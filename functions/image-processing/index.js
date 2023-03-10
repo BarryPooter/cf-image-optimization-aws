@@ -27,6 +27,12 @@ exports.handler = async (event) => {
     // timing variable
     var timingLog = "perf ";
     var startTime = performance.now();
+    
+    // allowed dimensions
+    var allowedDimensions = [
+        80, 200, 250, 500, 1000
+    ];
+    
     // Downloading original image
     let originalImage;
     let contentType;
@@ -47,14 +53,22 @@ exports.handler = async (event) => {
     });
     timingLog = timingLog + parseInt(performance.now()-startTime) + ' ';
     startTime = performance.now();
+    
     try {
         // check if resizing is requested
         var resizingOptions = {};
-        if (operationsJSON['width']) resizingOptions.width = parseInt(operationsJSON['width']);
-        if (operationsJSON['height']) resizingOptions.height = parseInt(operationsJSON['height']);
+        if (operationsJSON['width'] && allowedDimensions.includes(parseInt(operationsJSON['width']))) {
+            resizingOptions.width = parseInt(operationsJSON['width']);
+        }
+        
+        if (operationsJSON['height'] && allowedDimensions.includes(parseInt(operationsJSON['height']))) {
+            resizingOptions.height = parseInt(operationsJSON['height']);
+        } 
+        
         if (operationsJSON['height'] || operationsJSON['width']) {
-		resizingOptions.fit = 'contain';
-		resizingOptions.background = { r: 255, g: 255, b: 255, alpha: 0 }
+            resizingOptions.fit = 'contain';
+            resizingOptions.background = { r: 255, g: 255, b: 255, alpha: 1
+        }
 	}
 
         if (resizingOptions) transformedImage = sharpObject.resize(resizingOptions);
